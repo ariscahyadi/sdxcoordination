@@ -1,0 +1,51 @@
+{
+  "ports": {
+    "of:0000000000000001/3": {
+      "interfaces": [
+        {
+          "ips": [ "10.1.1.1/24"],
+          "mac": "00:00:00:00:00:a1"
+        }
+      ]
+    },
+    "of:0000000000000001/4": {
+      "interfaces": [
+        {
+          "ips": [ "10.1.2.1/24" ],
+          "mac": "00:00:00:00:00:a2"
+        }
+      ]
+    }
+  },
+  "apps": {
+    "org.onosproject.router": {
+      "bgp": {
+        "bgpSpeakers": [
+          {
+            "name": "speaker1",
+            "connectPoint": "of:0000000000000001/1",
+            "peers": [ "10.1.1.2" ]
+          },
+          {
+            "connectPoint": "of:0000000000000001/2",
+            "peers": [ "10.1.2.2" ]
+          }
+        ]
+      }
+    },
+    "org.onosproject.sdxcoordination": {
+      "members": {
+        "controllers": [
+          {
+            "asn": "65011",
+            "ip": "203.80.21.16",
+            "username": "karaf",
+            "password": "karaf",
+            "sinkPort" : "of:0000000000000001/5"
+          }
+        ]
+      }
+    }
+  }
+}
+
